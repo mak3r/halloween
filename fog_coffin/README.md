@@ -1,0 +1,103 @@
+# Fog Coffin — build notes
+
+**Revision 5 (Oct 18, 2026).** PETG, 0.8 mm nozzle, Bambu H2C. Printed hinge with 5.0 mm cradle slots (fit-tested). Every joint uses M3×12.
+
+## Design decisions (what was settled, and why)
+| Decision | Choice | Why |
+|---|---|---|
+| Material | **PETG** | Easier to print flat on the long walls than ABS. Safe as long as the fogger nozzle has clearance (see Fogger safety). |
+| Hinge type | **Printed lift-off hinge**: pins on the lid drop into open cradles on the wall | No hardware, and the lid lifts off for yearly take-down. A full-length 5 mm rod was considered and rejected: 8–10 knuckles would have to line up over 315 mm, and a slightly bowed wall would make it bind. |
+| Hinge fit | **Cradle slot 5.0 mm, side gaps 0.4 mm** | Round 1 (5.4/5.6/5.8) was all sloppy. Round 2: 5.0 was best, snug at first and smooth after a few swings. A little side wobble is fine with three cradles. |
+| Screws | **All M3×12 + M3 nut (25)** | Uses screws already on hand. Stay lugs got deeper 3.6 mm nut pockets and 1.2 mm printed washers so 12 mm still engages fully. |
+| Plate layout | **Long walls run the 320 mm direction**, every plate within 300 × 320 | The H2C only gives 325 mm across on the left nozzle. Bambu Studio rejected the 315 mm wall running across. |
+| Anti-curl tabs | **Built-in 0.5 mm corner tabs on all six walls** (24 × 10 mm, 2 mm overlap) | First print of plate 1 curled at the corners. Tabs stay inside each wall's length, so the long walls still fit the 320 mm direction; they stick out sideways instead. |
+| Fogger | 230 × 130 × 120 mm body, ~150 mm with the handle up | Fits with 187 mm clear in front of the nozzle. No size change needed. |
+
+## Size
+- Outside: **430 L × 260 W (shoulders) × 185 H mm**. The head end is 170 wide, the foot end 150.
+- Inside: 424 mm long, 180 mm tall under the lid. Width is 167 mm at the head, 253 at the shoulders and 154 near the foot.
+
+## Files
+- `plates/`: 7 plate layouts (.3mf). These hold **part positions only, no slicer settings**. Assign the 0.8 mm nozzle and apply the settings below in Bambu Studio.
+- `stl/`: every part in print orientation, decorated face down.
+- `step_untextured/`: each part in assembled position plus a full assembly STEP for Fusion, without wood grain to keep files small.
+- `coffin.py`: parametric source (CadQuery). Edit `PARAMS` and run `python3 export.py` to regenerate. `check.py` re-runs the fit and lid-swing checks.
+- `hinge_test.py`: makes the hinge fit-test pieces.
+- `renders/`: preview images.
+
+## Plates and filament (PETG at 1.28 g/cm³)
+| # | Plate | Contents | Approx. PETG |
+|---|---|---|---|
+| 1 | Hinge wall (right long) | 3 hinge cradles, stay lug, 2 stake tabs | 255 g |
+| 2 | Left long wall | 2 stake tabs | 255 g |
+| 3 | Head wall + both cord plugs | cord notch, plug screw boss | 155 g |
+| 4 | Foot wall + stay + 2 washers | cord notch, plug screw boss | 140 g |
+| 5 | Both shoulder walls | | 240 g |
+| 6 | Lid, head half | cross + grain, 1 cradle's pins, stay lug | 220 g |
+| 7 | Lid, foot half | grain, 2 cradles' pins | 180 g |
+| | **Total** | | **≈ 1.45 kg (allow 1.5 kg)** |
+
+The walls print almost solid, since four 0.8 mm walls fill a 3.2 mm wall. Bambu Studio's estimate is the exact number. To save about 25%, set `wall=2.4` in `coffin.py` and regenerate.
+
+**Print plates 1 and 7 first.** Together they check that the long wall prints flat (less than ~1 mm of bow on a flat surface) and that the hinge lines up over its full length.
+
+## Print settings (PETG, 0.8 mm nozzle)
+| Setting | Value |
+|---|---|
+| Nozzle / bed | 250 °C (first layer 255) / **80 °C** |
+| Chamber heating | Off, but **keep the door and top lid closed** to block drafts |
+| Plate | **Wash with hot water + dish soap, rinse, dry; don't touch the print area.** Textured PEI + thin glue stick, or Engineering plate + Bambu liquid glue (never bare: PETG can tear it). |
+| Layer height | 0.40 mm (**first layer 0.50: matches the tab thickness**) |
+| First layer speed | ~30 mm/s |
+| Line width | 0.82 mm |
+| Walls / top / bottom | 4 / 3 / 3 |
+| Infill | 15% gyroid |
+| Part cooling / overhang fan | **Off for the first 3–4 layers**, then 30% max / 70% |
+| Outer wall speed | 60–80 mm/s |
+| **Elephant-foot compensation** | **0**, so the wood-grain grooves on the bed side don't close up |
+| Brim / skirt | No slicer brim; the walls carry their own corner tabs. Skirt off (the long walls have only ~5 mm to spare in the 320 mm direction). |
+| Supports | None. Flanges lean 50–75°; cradles, pins and lugs are self-supporting. |
+| Drying | 65 °C for 8 h if the spool has been open a while |
+
+## Corner tabs
+Each wall has four single-layer tabs at its bed-side corners. After printing, let the plate cool fully, pop the part off, then peel or snip the tabs at the wall edge with flush cutters and clean up with a knife or sandpaper. The edge they leave is on the outside bottom/top edge of the wall, hidden by paint and the ground.
+
+## Hardware: 25 × M3×12 + 25 × M3 hex nuts
+- **18** corner joints (3 per corner). The head goes in the plain hole, the nut in the hex pocket. About 2 mm of thread shows past the nut.
+- **3** lid splice joint.
+- **2** lid stay, each with a printed 1.2 mm washer under the head. Press these nuts all the way to the bottom of their 3.6 mm pockets.
+- **2** cord plugs: screw from outside, nut in the boss inside.
+- **0** hinge.
+- M3×22 works anywhere in a pinch; it just sticks out about 11 mm inside.
+
+## Assembly
+1. Do a dry run before painting (see Fogger setup), then take it apart and paint.
+2. Drop nuts into the hex pockets and bolt the six walls into a ring. Each corner is two flanges meeting on the mitre line.
+3. Bolt the two lid halves together through the splice ribs.
+4. **Lid on:** hold the lid open about 80°, set the pins at the mouths of the three cradles (they open toward the inside and slightly up), push toward the hinge wall so the pins slide down into the cradles, then lower it.
+5. **Stay:** washer + screw through the bar's round hole onto the lid's bushing, and through its slot onto the wall's bushing. The screw clamps the bushing, not the bar, so tighten fully and the bar still swings.
+6. **Plugs:** slotted plug over the cord at the head end, blank plug at the foot.
+7. **Stakes:** the four tabs at the bottom of the long walls take tent stakes or landscape staples.
+
+**Lid stay:** it clicks into notches at about **30°, 55° and 80°**, with a hard stop at 85°, so the lid can't flop over backwards. To close, lift slightly, push the bottom of the stay toward the hinge wall so it slides past the notches, and lower.
+
+**Take-down each year:** remove one stay screw, lift the lid off the cradles, then unbolt the corners. Store the lid flat and on its own, since leverage on the pins is what breaks them.
+
+**Hinge repair:** if a pin breaks, drill the stub out at 5 mm and glue in a short piece of 5 mm rod.
+
+## Fogger setup
+- Fogger centred, back about 10 mm from the head wall, nozzle pointing toward the foot. That leaves about 187 mm clear in front of the nozzle.
+- Cord out through the head-wall notch.
+- **Ice:** a shallow tray or sealed bag in the foot section, in the fog's path. Fog passing over ice stays low. Keep the ice at least 10 cm from the nozzle and away from the fogger's vents.
+- **Dry run:** run it with ice for 10–15 minutes and feel the walls nearest the nozzle. If a spot is too hot to keep your hand on, move the fogger back.
+
+## Fogger safety
+- PETG starts to soften around 69 °C. Keep plastic **at least 10 cm in front of the nozzle**, and never let the nozzle touch anything.
+- Meltwater and 120 V: use a GFCI outdoor outlet, put the fogger on a small riser, and keep ice in a sealed bag or tray.
+- Fog fluid leaves a slippery film, so wipe the inside after use.
+
+## Painting
+Scuff with a gray Scotch-Brite pad, wipe with isopropyl alcohol, then use a plastic-bonding primer and matte black. Keep paint off the hinge pins, the cradles and the nut pockets. For a weathered look, dry-brush dark gray across the grain so the grooves stay black.
+
+## If you ever reprint in ABS
+Settings: 265 °C nozzle, 100 °C bed, 60 °C chamber pre-heated for 20–30 min, 10–20% cooling, mouse-ear brims on all walls, and let parts cool in the closed chamber. **Reprint the hinge test first**, since ABS shrinks differently and the 5.0 mm slot may change.
