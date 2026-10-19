@@ -13,7 +13,7 @@ A wood-grain coffin that sits over a fog machine in the yard. The lid props open
 - **Hardware:** 25 × M3×12 screws and nuts. The hinge needs none.
 - **Size:** 430 × 260 × 185 mm outside. Fits a 230 × 130 × 150 mm fogger with 18 cm clear in front of the nozzle.
 
-**Build notes, print settings and assembly:** [fog_coffin/README.md](fog_coffin/README.md)
+**Build notes and print settings:** [fog_coffin/README.md](fog_coffin/README.md) · **Assembly guide:** [fog_coffin/ASSEMBLY.md](fog_coffin/ASSEMBLY.md)
 
 ### Regenerating the model
 

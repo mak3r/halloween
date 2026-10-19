@@ -24,6 +24,7 @@
 - `step_untextured/`: each part in assembled position plus a full assembly STEP for Fusion, without wood grain to keep files small.
 - `coffin.py`: parametric source (CadQuery). Edit `PARAMS` and run `python3 export.py` to regenerate `stl/`, `step_untextured/` and `plates/` in place (never `bambu/`). `check.py` re-runs the fit and lid-swing checks.
 - `hinge_test.py`: makes the hinge fit-test pieces.
+- `assembly_diagram.py`: draws `renders/assembly_map.png` from the model.
 - `renders/`: preview images.
 
 ## Plates and filament (PETG at 1.28 g/cm³)
@@ -72,19 +73,7 @@ Each wall has four single-layer tabs at its bed-side corners. After printing, le
 - M3×22 works anywhere in a pinch; it just sticks out about 11 mm inside.
 
 ## Assembly
-1. Do a dry run before painting (see Fogger setup), then take it apart and paint.
-2. Drop nuts into the hex pockets and bolt the six walls into a ring. Each corner is two flanges meeting on the mitre line.
-3. Bolt the two lid halves together through the splice ribs.
-4. **Lid on:** hold the lid open about 80°, set the pins at the mouths of the three cradles (they open toward the inside and slightly up), push toward the hinge wall so the pins slide down into the cradles, then lower it.
-5. **Stay:** washer + screw through the bar's round hole onto the lid's bushing, and through its slot onto the wall's bushing. The screw clamps the bushing, not the bar, so tighten fully and the bar still swings.
-6. **Plugs:** slotted plug over the cord at the head end, blank plug at the foot.
-7. **Stakes:** the four tabs at the bottom of the long walls take tent stakes or landscape staples.
-
-**Lid stay:** it clicks into notches at about **30°, 55° and 80°**, with a hard stop at 85°, so the lid can't flop over backwards. To close, lift slightly, push the bottom of the stay toward the hinge wall so it slides past the notches, and lower.
-
-**Take-down each year:** remove one stay screw, lift the lid off the cradles, then unbolt the corners. Store the lid flat and on its own, since leverage on the pins is what breaks them.
-
-**Hinge repair:** if a pin breaks, drill the stub out at 5 mm and glue in a short piece of 5 mm rod.
+**Step-by-step guide with a map of every corner joint: [ASSEMBLY.md](ASSEMBLY.md).** In short: build the head end (corners A, B), add both long walls (C, F), close with the foot wall (D, E), square it on a flat surface, then tighten. After that come the cord plugs, the lid seam, hanging the lid on its cradles and fitting the stay.
 
 ## Fogger setup
 - Fogger centred, back about 10 mm from the head wall, nozzle pointing toward the foot. That leaves about 187 mm clear in front of the nozzle.
