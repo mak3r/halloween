@@ -15,4 +15,4 @@ Copyright © 2026 mak3r. This repository uses two licenses: one for designs, one
 
 Want to use something here commercially? Open an issue to ask about a separate license.
 
-Required Notice: Copyright © 2026 mak3r (https://github.com/<owner>/halloween)
+Required Notice: Copyright © 2026 mak3r (https://github.com/mak3r/halloween)
