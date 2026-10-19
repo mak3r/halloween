@@ -1,11 +1,12 @@
 """Hinge-cradle fit test: slices the real model around the middle cradle.
 Makes one lid coupon (pins) and wall coupons in several slot widths, labelled on top."""
 import os, copy, numpy as np, cadquery as cq, coffin
+os.chdir(os.path.dirname(os.path.abspath(__file__)))  # outputs go next to this script
 
 VARIANTS = (5.0, 5.1, 5.2, 5.3)     # round 2: all of 5.4/5.6/5.8 were sloppy (pin is 5.0 nominal)
 GAP = 0.4                           # axial gap pin-barrel to cradle (was 0.6)
 C = coffin.PARAMS['cradle_s'][1]    # middle cradle (on the foot lid half)
-OUT = "out/hinge_test_r2"; os.makedirs(OUT, exist_ok=True)
+OUT = "hinge_test_r2"; os.makedirs(OUT, exist_ok=True)
 
 def hbox(info, s0, s1, u0, u1, v0, v1):
     A0, he, hm = info['A0'], info['he'], info['hm']; z = np.array([0, 0, 1.0])
